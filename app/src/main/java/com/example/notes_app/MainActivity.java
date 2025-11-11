@@ -5,9 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,18 +33,34 @@ public class MainActivity extends AppCompatActivity {
         lvNotes = findViewById(R.id.lvNotes);
         Button btnAddNote = findViewById(R.id.btnAddNote);
         Button btnDeleteNote = findViewById(R.id.btnDeleteNote);
+        Spinner spStorageMain = findViewById(R.id.spStorageMain);
 
         prefsHelper = new SharedPrefsHelper(this);
         dbHelper = new DatabaseHelper(this);
 
+        ArrayAdapter<String> storageAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                new String[]{"SHARED_PREFS", "SQLITE"});
+        storageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spStorageMain.setAdapter(storageAdapter);
+
+        spStorageMain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentStorage = StorageType.valueOf((String) parent.getItemAtPosition(position));
+                refreshNotesList();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         btnAddNote.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddNoteActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, AddNoteActivity.class));
         });
 
         btnDeleteNote.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DeleteNoteActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, DeleteNoteActivity.class));
         });
 
         lvNotes.setOnItemClickListener((parent, view, position, id) -> {
@@ -86,8 +107,19 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Note> notes = (currentStorage == StorageType.SHARED_PREFS)
                 ? prefsHelper.getAllNotes() : dbHelper.getAllNotes();
 
-        ArrayAdapter<Note> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, notes);
+        ArrayAdapter<Note> adapter = new ArrayAdapter<Note>(this,
+                android.R.layout.simple_list_item_2, android.R.id.text1, notes) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = view.findViewById(android.R.id.text1);
+                TextView text2 = view.findViewById(android.R.id.text2);
+                Note note = getItem(position);
+                text1.setText(note.getName());
+                text2.setText(note.getContent());
+                return view;
+            }
+        };
         lvNotes.setAdapter(adapter);
         setTitle("Storage: " + currentStorage.name());
     }
