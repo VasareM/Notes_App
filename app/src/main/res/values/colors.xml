@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bckg_color">#FFF2E7</color>
-    <color name="header_color">#FCD7A4</color>
-    <color name="note_color">#FFDFC9</color>
+    <color name="bckg_color">#F3F8EBCF</color>
+    <color name="header_color">#FFD761</color>
+    <color name="darker_color">#F2C32D</color>
+    <color name="note_color">#FFEEBE</color>
 </resources>
