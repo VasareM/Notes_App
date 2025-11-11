@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, DeleteNoteActivity.class)
                     .putExtra("storage", currentStorage.name()));
         } else if (id == R.id.menu_storage) {
-            // Toggle storage
             currentStorage = (currentStorage == StorageType.SHARED_PREFS)
                     ? StorageType.SQLITE : StorageType.SHARED_PREFS;
             refreshNotesList();

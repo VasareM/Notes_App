@@ -32,14 +32,12 @@ public class AddNoteActivity extends AppCompatActivity {
         prefsHelper = new SharedPrefsHelper(this);
         dbHelper = new DatabaseHelper(this);
 
-        // Populate storage spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,
                 new String[]{"SHARED_PREFS", "SQLITE"});
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spStorage.setAdapter(adapter);
 
-        // Default selection (optional)
         spStorage.setSelection(0);
 
         spStorage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -56,6 +54,7 @@ public class AddNoteActivity extends AppCompatActivity {
     }
 
     public void onBtnSaveAndCloseClick(View view) {
+        storageType = selectedStorage;
         Log.d("AddNoteActivity", "onBtnSaveAndCloseClick called");
         String content = edNoteContent.getText().toString().trim();
         String title = edNoteTitle.getText().toString().trim();
@@ -71,7 +70,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
         Note note = new Note(title, content);
 
-        if (storageType == StorageType.SHARED_PREFS) {
+        if (selectedStorage == StorageType.SHARED_PREFS) {
             prefsHelper.saveNote(note);
         } else {
             dbHelper.addNote(note);
