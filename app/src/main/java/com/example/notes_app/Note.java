@@ -24,6 +24,6 @@ public class Note {
 
     @Override
     public String toString() {
-        return name;
+        return getName() + ": " + getContent();
     }
 }

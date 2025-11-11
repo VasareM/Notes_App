@@ -81,4 +81,7 @@ public class DeleteNoteActivity extends AppCompatActivity {
             loadNotes();
         }
     }
+    public void onBackToMainClick(View view) {
+        finish();
+    }
 }
