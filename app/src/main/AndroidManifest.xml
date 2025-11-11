@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Notes_App">
+        <activity android:name=".AddNoteActivity" />
+        <activity android:name=".DeleteNoteActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
