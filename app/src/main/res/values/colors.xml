@@ -2,8 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bckg_color">#F3F8EBCF</color>
+    <color name="bckg_color">#F3FFF1D6</color>
     <color name="header_color">#FFD761</color>
-    <color name="darker_color">#F2C32D</color>
+    <color name="darker_color">#EBC134</color>
+    <color name="even_darker_color">#C77D12</color>
     <color name="note_color">#FFEEBE</color>
 </resources>

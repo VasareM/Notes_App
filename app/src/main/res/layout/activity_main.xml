@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bckg_color"
+    android:padding="3dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -16,19 +17,40 @@
         android:text="@string/notes"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="55sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        android:textSize="40sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lvNotes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:divider="@color/darker_color"
+        android:dividerHeight="1.5dp"
         android:background="@color/note_color"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnAddNote"
         />
+    <Button
+        android:id="@+id/btnAddNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_note"
+        android:backgroundTint="@color/darker_color"
+        app:layout_constraintBottom_toTopOf="@id/btnDeleteNote"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnDeleteNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_note"
+        android:backgroundTint="@color/even_darker_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

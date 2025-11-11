@@ -2,5 +2,11 @@
     <string name="app_name">Notes_App</string>
     <string name="notes">Notes</string>
     <string name="save_and_close">Save and close</string>
-    <string name="note_text">Note text</string>
+    <string name="note_title">Title</string>
+    <string name="add_note">Add note</string>
+    <string name="delete_note">Delete note</string>
+    <string name="change_storage">Change storage</string>
+    <string name="write_a_note_here">Write a note here</string>
+    <string name="choose_to_delete">Choose a note to delete</string>
+    <string name="delete">Delete</string>
 </resources>

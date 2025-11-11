@@ -4,26 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="7dp"
     android:background="@color/bckg_color">
 
-
+<!--
     <TextView
         android:id="@+id/tvNoteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/note_text"
+        android:text="@string/note_title"
         android:textSize="20sp"
+        android:padding="5dp"
         android:background="@color/header_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+-->
+    <EditText
+        android:id="@+id/edNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/note_title"
+        android:textSize="22sp"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:background="@color/header_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edNoteContent" />
+    <!-- app:layout_constraintTop_toBottomOf="@id/tvNoteTitle" -->
 
     <EditText
         android:id="@+id/edNoteContent"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/write_a_note_here"
+        android:padding="7dp"
+        android:textSize="17sp"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNoteTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/edNoteTitle" />
 
     <Button
         android:id="@+id/btnSaveAndClose"
@@ -33,7 +52,6 @@
         android:text="@string/save_and_close"
         android:textSize="17sp"
         android:backgroundTint="@color/darker_color"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edNoteContent" />
