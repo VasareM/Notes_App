@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Notes_App</string>
     <string name="notes">Notes</string>
+    <string name="save_and_close">Save and close</string>
 </resources>
