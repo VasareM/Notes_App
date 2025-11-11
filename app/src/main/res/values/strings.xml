@@ -9,4 +9,5 @@
     <string name="write_a_note_here">Write a note here</string>
     <string name="choose_to_delete">Choose a note to delete</string>
     <string name="delete">Delete</string>
+    <string name="choose_a_storage">Choose a storage</string>
 </resources>

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         lvNotes.setOnItemClickListener((parent, view, position, id) -> {
             Note note = (Note) parent.getItemAtPosition(position);
-            Toast.makeText(this, note.getContent(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, note.getName(), Toast.LENGTH_LONG).show();
         });
 
         refreshNotesList();

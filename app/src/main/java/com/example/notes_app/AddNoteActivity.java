@@ -3,7 +3,10 @@ package com.example.notes_app;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,23 +14,45 @@ public class AddNoteActivity extends AppCompatActivity {
 
     private EditText edNoteContent;
     private EditText edNoteTitle;
+    private Spinner spStorage;
+    private StorageType selectedStorage;
     private StorageType storageType;
     private SharedPrefsHelper prefsHelper;
     private DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("AddNoteActivity", "onCreate called");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
 
+        spStorage = findViewById(R.id.spStorage);
         edNoteTitle = findViewById(R.id.edNoteTitle);
         edNoteContent = findViewById(R.id.edNoteContent);
+
         prefsHelper = new SharedPrefsHelper(this);
         dbHelper = new DatabaseHelper(this);
 
-        String storage = getIntent().getStringExtra("storage");
-        storageType = StorageType.valueOf(storage);
+        // Populate storage spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,
+                new String[]{"SHARED_PREFS", "SQLITE"});
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spStorage.setAdapter(adapter);
+
+        // Default selection (optional)
+        spStorage.setSelection(0);
+
+        spStorage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedStorage = StorageType.valueOf((String) parent.getItemAtPosition(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedStorage = StorageType.SHARED_PREFS;
+            }
+        });
     }
 
     public void onBtnSaveAndCloseClick(View view) {
